@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+# reading image
 frame = cv2.imread("surya.jpg")
 shape = frame.shape
 y1 = shape[0]/3
@@ -16,13 +17,12 @@ cv2.GaussianBlur(bproject,(11,11),0)
 cv2.GaussianBlur(bproject,(11,11),0)
 cv2.GaussianBlur(bproject,(11,11),0)
 cv2.GaussianBlur(bproject,(11,11),0)
-ret,thresh1 = cv2.threshold(bproject,250,255,1)
+ret,thresh1 = cv2.threshold(bproject,250,255,0)
 thresh1 = cv2.merge((thresh1,thresh1,thresh1))
 disc = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(11,11))
 cv2.filter2D(thresh1,-1,disc,thresh1)
 final = cv2.bitwise_and(frame,thresh1)
 cv2.imshow('final',final)
-# When everything done, release the capture
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
